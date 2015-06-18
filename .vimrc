@@ -1,20 +1,23 @@
 set nocompatible              " be iMproved, required
 filetype off                  " required
+
+" =================== Vundle Init ===================================
 "set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
-" let Vundle manage Vundle, required
-Plugin 'gmarik/Vundle.vim'
+" =================== Vundle Plugins ================================
+
+Plugin 'gmarik/Vundle.vim'       " let Vundle manage Vundle, required
 Plugin 'tpope/vim-sensible'      " Some sensible default settings
 Plugin 'tpope/vim-fugitive'      " Git plugin.  See `:help fugitive`
 Plugin 'mhinz/vim-signify'       " Display git status in line number column
 Plugin 'scrooloose/nerdtree'     " IDE like file browser on the left. Open with `:NERDTree`
 Plugin 'majutsushi/tagbar'       " List vars, classes, etc on the right. Open with `:Tagbar`
 Plugin 'tpope/vim-surround'		 " Bracket Management
-Plugin 'tpope/vim-repeat'	 " Let's plugins use the . command to repeat text changes
+Plugin 'tpope/vim-repeat'	     " Let's plugins use the . command to repeat text changes
 Plugin 'itchyny/lightline.vim'	 " Lightline statusline/tabline for Vim
-Plugin 'rstacruz/sparkup'	 " Write HTML code faster
+Plugin 'rstacruz/sparkup'	     " Write HTML code faster
 Plugin 'msanders/snipmate.vim'	 " Snippet output
 Plugin 'scrooloose/syntastic'    " Better display of syntax errors
 Plugin 'ctrlpvim/ctrlp.vim'      " File fuzzy finder. Activate with `C-p`
@@ -24,16 +27,18 @@ Plugin 'pangloss/vim-javascript' " Improve JavaScript support
 Plugin 'elzr/vim-json'           " Improved support for .json files
 Plugin 'tpope/vim-markdown'      " Prettier markdown
 
-" All of your Plugins must be added before the following line
-call vundle#end()            " required
+call vundle#end()
 
-filetype plugin indent on    " required
+" =================== Vim tweaks ====================================
 
-let mapleader=","
+filetype plugin indent on  
+
+let mapleader=" "
 colorscheme slate2
 set number
 
-" Indention properties
+" =================== Indention Settings ============================
+
 :set tabstop=4     " tabs are at proper location
 :set expandtab     " don't use actual tab character (ctrl-v)
 :set shiftwidth=4  " indenting is 4 spaces
@@ -41,20 +46,14 @@ set number
 :set smartindent   " does the right thing (mostly) in programs
 :set cindent       " stricter rules for C programs
 
-" Ensure PowerLine "Fancy" symbols
-" let g:Powerline_symbols = 'fancy'
-
-"Highlight text as you search
-:set incsearch
-"Make search insensitive to case unless capital letters are used
-:set ignorecase
+:set incsearch     " Highlight text as you search
+:set ignorecase    " Make search insensitive to case unless capital letters are used
 :set smartcase
-"Make search high results
-:set hlsearch
-"Clear highlight with \q
-:nmap \q :nohlsearch<CR>
+:set hlsearch      " Make search high results
+:nmap <leader>q :nohlsearch<CR> " Clear highlight with \q
 
-" Syntastic Recommended Settings
+" =================== Syntastic Settings ============================
+
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
@@ -64,18 +63,19 @@ let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 
+" =================== Lightline Settings ============================
 let g:lightline = {
       \ 'component': {
       \   'readonly': '%{&readonly?"⭤":""}',
       \ }
       \ }
 
-" **MY MAPPINGS** 
-" Make up/down move one line on screen
-:nmap j gj
-:nmap k gk
-" Make C-e go to previous buffer 
-:nmap <C-e> :e#<CR> 
-" Cycle between buffers
-:nmap <C-n> :bnext<CR>
-:nmap <C-p> :bprev<CR>
+" =================== Custom Mappings ===============================
+
+:nmap j gj " Make down move one line on screen
+:nmap k gk " Make up move one line on screen
+:nmap <C-e> :e#<CR> " Make C-e go to previous buffer 
+:nmap <C-n> :bnext<CR> " Cycle Next buffer
+:nmap <C-p> :bprev<CR> " Cycle Previous buffer
+
+" =================== EOF ===========================================
