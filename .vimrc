@@ -34,7 +34,9 @@ call vundle#end()
 filetype plugin indent on  
 
 let mapleader=" "
-colorscheme slate2
+set t_Co=256
+set background=light    " Use light theme of PaperColor
+colorscheme PaperColor
 set number
 
 " =================== Indention Settings ============================
@@ -50,7 +52,7 @@ set number
 :set ignorecase    " Make search insensitive to case unless capital letters are used
 :set smartcase
 :set hlsearch      " Make search high results
-:nmap <leader>q :nohlsearch<CR> " Clear highlight with \q
+:nmap /q :nohlsearch<CR> " Clear highlight with \q
 
 " =================== Syntastic Settings ============================
 
@@ -64,18 +66,26 @@ let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 
 " =================== Lightline Settings ============================
+
 let g:lightline = {
       \ 'component': {
       \   'readonly': '%{&readonly?"⭤":""}',
       \ }
       \ }
 
+" =================== NERDTree Settings ===============================
+
+"autocmd vimenter * NERDTree " automatically start Nerdtree on launch
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+
 " =================== Custom Mappings ===============================
 
-:nmap j gj " Make down move one line on screen
-:nmap k gk " Make up move one line on screen
+":nmap j gj " Make down move one line on screen
+":nmap k gk " Make up move one line on screen
 :nmap <C-e> :e#<CR> " Make C-e go to previous buffer 
 :nmap <C-n> :bnext<CR> " Cycle Next buffer
 :nmap <C-p> :bprev<CR> " Cycle Previous buffer
+map <C-n> :NERDTreeToggle<CR> " Open NERDTree with Ctrl+n
 
 " =================== EOF ===========================================
